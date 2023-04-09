@@ -6,7 +6,7 @@ import org.mapstruct.*;
 import org.mapstruct.Mapper;
 
 @Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = MappingConstants.ComponentModel.CDI)
-public interface CountryMapper {
+public interface CountryMapper extends BaseMapper<Country, CountryDto> {
     Country toEntity(CountryDto countryDto);
 
     CountryDto toDto(Country country);

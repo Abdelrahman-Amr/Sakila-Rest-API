@@ -1,16 +1,19 @@
 package gov.iti.jets.dto;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 /**
  * A DTO for the {@link gov.iti.jets.entity.Country} entity
  */
 @Data
-public class CountryDto implements Serializable {
-    private final Short countryId;
-    private final String country;
-    private final Date lastUpdate;
+@NoArgsConstructor
+public class CountryDto implements BaseDto{
+    private  Short countryId;
+    private  String country;
+    private  LocalDateTime lastUpdate;
 }
