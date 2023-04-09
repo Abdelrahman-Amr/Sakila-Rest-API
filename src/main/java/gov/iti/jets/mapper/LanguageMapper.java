@@ -6,11 +6,6 @@ import org.mapstruct.*;
 import org.mapstruct.Mapper;
 
 @Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = MappingConstants.ComponentModel.CDI)
-public interface LanguageMapper {
-    Language toEntity(LanguageDto languageDto);
+public interface LanguageMapper  extends BaseMapper<Language, LanguageDto>{
 
-    LanguageDto toDto(Language language);
-
-    @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
-    Language partialUpdate(LanguageDto languageDto, @MappingTarget Language language);
 }
