@@ -8,6 +8,7 @@ import gov.iti.jets.entity.Film;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 
@@ -29,8 +30,8 @@ public class FilmActor implements Serializable {
     protected FilmActorPK filmActorPK;
     @Basic(optional = false)
     @Column(name = "last_update")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date lastUpdate;
+//    @Temporal(TemporalType.TIMESTAMP)
+    private LocalDateTime lastUpdate;
     @JoinColumn(name = "actor_id", referencedColumnName = "actor_id", insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private Actor actor;
@@ -45,7 +46,7 @@ public class FilmActor implements Serializable {
         this.filmActorPK = filmActorPK;
     }
 
-    public FilmActor(FilmActorPK filmActorPK, Date lastUpdate) {
+    public FilmActor(FilmActorPK filmActorPK, LocalDateTime lastUpdate) {
         this.filmActorPK = filmActorPK;
         this.lastUpdate = lastUpdate;
     }
@@ -62,11 +63,11 @@ public class FilmActor implements Serializable {
         this.filmActorPK = filmActorPK;
     }
 
-    public Date getLastUpdate() {
+    public LocalDateTime getLastUpdate() {
         return lastUpdate;
     }
 
-    public void setLastUpdate(Date lastUpdate) {
+    public void setLastUpdate(LocalDateTime lastUpdate) {
         this.lastUpdate = lastUpdate;
     }
 

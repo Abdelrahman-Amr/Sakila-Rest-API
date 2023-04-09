@@ -7,6 +7,7 @@ import gov.iti.jets.entity.Film;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
@@ -35,8 +36,8 @@ public class Language implements BaseEntity {
     private String name;
     @Basic(optional = false)
     @Column(name = "last_update")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date lastUpdate;
+//    @Temporal(TemporalType.TIMESTAMP)
+    private LocalDateTime lastUpdate;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "languageId")
     private List<Film> filmList;
     @OneToMany(mappedBy = "originalLanguageId")
@@ -49,7 +50,7 @@ public class Language implements BaseEntity {
         this.languageId = languageId;
     }
 
-    public Language(Short languageId, String name, Date lastUpdate) {
+    public Language(Short languageId, String name, LocalDateTime lastUpdate) {
         this.languageId = languageId;
         this.name = name;
         this.lastUpdate = lastUpdate;
@@ -71,11 +72,11 @@ public class Language implements BaseEntity {
         this.name = name;
     }
 
-    public Date getLastUpdate() {
+    public LocalDateTime getLastUpdate() {
         return lastUpdate;
     }
 
-    public void setLastUpdate(Date lastUpdate) {
+    public void setLastUpdate(LocalDateTime lastUpdate) {
         this.lastUpdate = lastUpdate;
     }
 

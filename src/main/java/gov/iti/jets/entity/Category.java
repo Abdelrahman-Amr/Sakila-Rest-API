@@ -6,6 +6,8 @@ package gov.iti.jets.entity;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
@@ -20,7 +22,7 @@ import java.util.List;
     @NamedQuery(name = "Category.findByCategoryId", query = "SELECT c FROM Category c WHERE c.categoryId = :categoryId"),
     @NamedQuery(name = "Category.findByName", query = "SELECT c FROM Category c WHERE c.name = :name"),
     @NamedQuery(name = "Category.findByLastUpdate", query = "SELECT c FROM Category c WHERE c.lastUpdate = :lastUpdate")})
-public class Category implements Serializable {
+public class Category implements BaseEntity {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -33,9 +35,9 @@ public class Category implements Serializable {
     private String name;
     @Basic(optional = false)
     @Column(name = "last_update")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date lastUpdate;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "category")
+//    @Temporal(TemporalType.TIMESTAMP)
+    private LocalDateTime lastUpdate;
+    @OneToMany( mappedBy = "category")
     private List<FilmCategory> filmCategoryList;
 
     public Category() {
@@ -45,7 +47,7 @@ public class Category implements Serializable {
         this.categoryId = categoryId;
     }
 
-    public Category(Short categoryId, String name, Date lastUpdate) {
+    public Category(Short categoryId, String name, LocalDateTime lastUpdate) {
         this.categoryId = categoryId;
         this.name = name;
         this.lastUpdate = lastUpdate;
@@ -67,11 +69,11 @@ public class Category implements Serializable {
         this.name = name;
     }
 
-    public Date getLastUpdate() {
+    public LocalDateTime getLastUpdate() {
         return lastUpdate;
     }
 
-    public void setLastUpdate(Date lastUpdate) {
+    public void setLastUpdate(LocalDateTime lastUpdate) {
         this.lastUpdate = lastUpdate;
     }
 

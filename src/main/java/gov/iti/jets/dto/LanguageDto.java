@@ -4,6 +4,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 /**
@@ -14,7 +15,7 @@ import java.util.Date;
 public class LanguageDto implements BaseDto{
     private  Short languageId;
     private  String name;
-    private  Date lastUpdate;
+    private LocalDateTime lastUpdate;
 
 
 }

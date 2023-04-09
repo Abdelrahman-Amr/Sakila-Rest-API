@@ -16,4 +16,7 @@ public interface BaseService<E extends BaseEntity, D extends BaseDto, T> {
     public D add(D dto) ;
     public D update(T id, D dto) ;
 
-    }
+    D deleteById(T id);
+
+
+}

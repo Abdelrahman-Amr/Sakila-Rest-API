@@ -7,6 +7,8 @@ import jakarta.persistence.*;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
@@ -28,7 +30,7 @@ import java.util.List;
     @NamedQuery(name = "Film.findByRating", query = "SELECT f FROM Film f WHERE f.rating = :rating"),
     @NamedQuery(name = "Film.findBySpecialFeatures", query = "SELECT f FROM Film f WHERE f.specialFeatures = :specialFeatures"),
     @NamedQuery(name = "Film.findByLastUpdate", query = "SELECT f FROM Film f WHERE f.lastUpdate = :lastUpdate")})
-public class Film implements Serializable, BaseEntity {
+public class Film implements BaseEntity {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -43,8 +45,8 @@ public class Film implements Serializable, BaseEntity {
     @Column(name = "description")
     private String description;
     @Column(name = "release_year")
-    @Temporal(TemporalType.DATE)
-    private Date releaseYear;
+//    @Temporal(TemporalType.DATE)
+    private LocalDate releaseYear;
     @Basic(optional = false)
     @Column(name = "rental_duration")
     private short rentalDuration;
@@ -63,8 +65,8 @@ public class Film implements Serializable, BaseEntity {
     private String specialFeatures;
     @Basic(optional = false)
     @Column(name = "last_update")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date lastUpdate;
+//    @Temporal(TemporalType.TIMESTAMP)
+    private LocalDateTime lastUpdate;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "film")
     private List<FilmCategory> filmCategoryList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "film")
@@ -85,7 +87,7 @@ public class Film implements Serializable, BaseEntity {
         this.filmId = filmId;
     }
 
-    public Film(Short filmId, String title, short rentalDuration, BigDecimal rentalRate, BigDecimal replacementCost, Date lastUpdate) {
+    public Film(Short filmId, String title, short rentalDuration, BigDecimal rentalRate, BigDecimal replacementCost, LocalDateTime lastUpdate) {
         this.filmId = filmId;
         this.title = title;
         this.rentalDuration = rentalDuration;
@@ -118,11 +120,11 @@ public class Film implements Serializable, BaseEntity {
         this.description = description;
     }
 
-    public Date getReleaseYear() {
+    public LocalDate getReleaseYear() {
         return releaseYear;
     }
 
-    public void setReleaseYear(Date releaseYear) {
+    public void setReleaseYear(LocalDate releaseYear) {
         this.releaseYear = releaseYear;
     }
 
@@ -174,11 +176,11 @@ public class Film implements Serializable, BaseEntity {
         this.specialFeatures = specialFeatures;
     }
 
-    public Date getLastUpdate() {
+    public LocalDateTime getLastUpdate() {
         return lastUpdate;
     }
 
-    public void setLastUpdate(Date lastUpdate) {
+    public void setLastUpdate(LocalDateTime lastUpdate) {
         this.lastUpdate = lastUpdate;
     }
 

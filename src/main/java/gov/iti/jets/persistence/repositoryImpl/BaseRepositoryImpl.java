@@ -64,5 +64,25 @@ public class BaseRepositoryImpl<E extends BaseEntity, T> implements BaseReposito
         return entity;
     }
 
+    @Override
+    public E deleteById(T id)
+    {
+        E deletedEntity = null;
+        try{
+            entityManager.getTransaction().begin();
+            deletedEntity= (E) entityManager.find(entityClass,id);
+            entityManager.remove(deletedEntity);
+        }catch (Exception ex)
+        {
+            entityManager.getTransaction().rollback();
+            deletedEntity = null;
+            ex.printStackTrace();
+        }
+        finally {
+            entityManager.getTransaction().commit();
+        }
+        return deletedEntity;
+    }
+
 
 }

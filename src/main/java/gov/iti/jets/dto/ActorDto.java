@@ -4,6 +4,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 /**
@@ -15,5 +16,5 @@ public class ActorDto implements BaseDto {
     private  Integer actorId;
     private  String firstName;
     private  String lastName;
-    private  Date lastUpdate;
+    private LocalDateTime lastUpdate;
 }

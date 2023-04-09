@@ -5,6 +5,8 @@ import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 /**
@@ -16,12 +18,12 @@ public class FilmDto implements BaseDto {
     private  Short filmId;
     private  String title;
     private  String description;
-    private  Date releaseYear;
+    private LocalDate releaseYear;
     private  Short rentalDuration;
     private  BigDecimal rentalRate;
     private  Short length;
     private  BigDecimal replacementCost;
     private  String rating;
     private  String specialFeatures;
-    private  Date lastUpdate;
+    private LocalDateTime lastUpdate;
 }

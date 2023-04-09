@@ -32,4 +32,9 @@ public interface BaseController <E extends BaseEntity, D extends BaseDto, T>{
     @Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
     @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
     public Response update(@PathParam("id") T id,  D dto);
+
+    @DELETE
+    @Path("{id}")
+    @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
+    public Response deleteById(@PathParam("id") T id);
 }

@@ -28,22 +28,31 @@ public class BaseControllerImpl<E extends BaseEntity, D extends BaseDto, T> impl
         return  Response.accepted().entity(dtos).build();
     }
 
-    @Override
-    @POST
-    @Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-    @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-    public Response add(D dto) {
-        D savedDto = baseService.add(dto);
-        return  Response.accepted().entity(savedDto).build();
-    }
+        @Override
+        @POST
+        @Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
+        @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
+        public Response add(D dto) {
+            D savedDto = baseService.add(dto);
+            return  Response.accepted().entity(savedDto).build();
+        }
+        @Override
+        @PUT
+        @Path("{id}")
+        @Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
+        @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
+        public Response update(@PathParam("id") T id,  D dto)
+        {
+            D savedDto = baseService.update(id, dto);
+            return  Response.accepted().entity(savedDto).build();
+        }
 
-    @PUT
+    @DELETE
     @Path("{id}")
-    @Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
     @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-    public Response update(@PathParam("id") T id,  D dto)
+    public Response deleteById(@PathParam("id") T id)
     {
-        D savedDto = baseService.update(id, dto);
-        return  Response.accepted().entity(savedDto).build();
+        D dto = baseService.deleteById(id);
+        return  Response.accepted().entity(dto).build();
     }
 }

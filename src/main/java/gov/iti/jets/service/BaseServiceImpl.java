@@ -49,4 +49,12 @@ public abstract  class BaseServiceImpl<E extends BaseEntity, D extends BaseDto, 
         E  updatedEntity = baseRepository.update(ent);
         return baseMapper.toDto(updatedEntity);
     }
+
+    @Override
+    public D deleteById(T id)
+    {
+        BaseRepositoryImpl<E,T> baseRepository = new BaseRepositoryImpl<>(entityClass, MyLocal.getInstance().get());
+        E entity = baseRepository.deleteById(id);
+        return baseMapper.toDto(entity);
+    }
 }

@@ -5,6 +5,8 @@
 package gov.iti.jets.entity;
 
 import java.io.Serializable;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 import jakarta.persistence.*;
@@ -22,7 +24,7 @@ import jakarta.persistence.*;
     @NamedQuery(name = "Actor.findByFirstName", query = "SELECT a FROM Actor a WHERE a.firstName = :firstName"),
     @NamedQuery(name = "Actor.findByLastName", query = "SELECT a FROM Actor a WHERE a.lastName = :lastName"),
     @NamedQuery(name = "Actor.findByLastUpdate", query = "SELECT a FROM Actor a WHERE a.lastUpdate = :lastUpdate")})
-public class Actor implements Serializable, BaseEntity {
+public class Actor implements BaseEntity {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -38,8 +40,8 @@ public class Actor implements Serializable, BaseEntity {
     private String lastName;
     @Basic(optional = false)
     @Column(name = "last_update")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date lastUpdate;
+//    @Temporal(TemporalType.TIMESTAMP)
+    private LocalDateTime lastUpdate;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "actor")
     private List<FilmActor> filmActorList;
 
@@ -50,7 +52,7 @@ public class Actor implements Serializable, BaseEntity {
         this.actorId = actorId;
     }
 
-    public Actor(Integer actorId, String firstName, String lastName, Date lastUpdate) {
+    public Actor(Integer actorId, String firstName, String lastName, LocalDateTime lastUpdate) {
         this.actorId = actorId;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -81,11 +83,11 @@ public class Actor implements Serializable, BaseEntity {
         this.lastName = lastName;
     }
 
-    public Date getLastUpdate() {
+    public LocalDateTime getLastUpdate() {
         return lastUpdate;
     }
 
-    public void setLastUpdate(Date lastUpdate) {
+    public void setLastUpdate(LocalDateTime lastUpdate) {
         this.lastUpdate = lastUpdate;
     }
 

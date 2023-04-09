@@ -12,5 +12,6 @@ public interface BaseRepository <E extends BaseEntity, T>{
     List<E> findAll();
     E add(E entity);
     E update(E entity);
+    E deleteById(T id);
 
 }

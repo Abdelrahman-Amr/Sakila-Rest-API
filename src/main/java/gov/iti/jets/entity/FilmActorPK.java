@@ -19,10 +19,10 @@ public class FilmActorPK implements Serializable {
 
     @Basic(optional = false)
     @Column(name = "actor_id")
-    private short actorId;
+    private Short actorId;
     @Basic(optional = false)
     @Column(name = "film_id")
-    private short filmId;
+    private Short filmId;
 
     public FilmActorPK() {
     }
