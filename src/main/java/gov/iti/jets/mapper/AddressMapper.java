@@ -6,11 +6,6 @@ import org.mapstruct.*;
 import org.mapstruct.Mapper;
 
 @Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = MappingConstants.ComponentModel.CDI)
-public interface AddressMapper {
-    Address toEntity(AddressDto addressDto);
+public interface AddressMapper extends BaseMapper<Address, AddressDto> {
 
-    AddressDto toDto(Address address);
-
-    @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
-    Address partialUpdate(AddressDto addressDto, @MappingTarget Address address);
 }

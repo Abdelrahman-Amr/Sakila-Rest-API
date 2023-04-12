@@ -42,7 +42,7 @@ public class Actor implements BaseEntity {
     @Column(name = "last_update")
 //    @Temporal(TemporalType.TIMESTAMP)
     private LocalDateTime lastUpdate;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "actor")
+    @OneToMany( mappedBy = "actor")
     private List<FilmActor> filmActorList;
 
     public Actor() {

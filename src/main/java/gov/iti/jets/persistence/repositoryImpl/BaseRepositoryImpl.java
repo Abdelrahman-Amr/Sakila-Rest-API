@@ -37,7 +37,6 @@ public class BaseRepositoryImpl<E extends BaseEntity, T> implements BaseReposito
             entityManager.persist(entity);
         }catch (Exception ex)
         {
-            entityManager.getTransaction().rollback();
             entity = null;
             ex.printStackTrace();
         }
@@ -54,7 +53,6 @@ public class BaseRepositoryImpl<E extends BaseEntity, T> implements BaseReposito
             entityManager.merge(entity);
         }catch (Exception ex)
         {
-            entityManager.getTransaction().rollback();
             entity = null;
             ex.printStackTrace();
         }
@@ -74,7 +72,6 @@ public class BaseRepositoryImpl<E extends BaseEntity, T> implements BaseReposito
             entityManager.remove(deletedEntity);
         }catch (Exception ex)
         {
-            entityManager.getTransaction().rollback();
             deletedEntity = null;
             ex.printStackTrace();
         }

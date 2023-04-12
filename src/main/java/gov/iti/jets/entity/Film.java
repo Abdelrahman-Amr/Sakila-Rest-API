@@ -67,9 +67,9 @@ public class Film implements BaseEntity {
     @Column(name = "last_update")
 //    @Temporal(TemporalType.TIMESTAMP)
     private LocalDateTime lastUpdate;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "film")
+    @OneToMany( mappedBy = "film")
     private List<FilmCategory> filmCategoryList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "film")
+    @OneToMany( mappedBy = "film")
     private List<FilmActor> filmActorList;
     @JoinColumn(name = "language_id", referencedColumnName = "language_id")
     @ManyToOne(optional = false)

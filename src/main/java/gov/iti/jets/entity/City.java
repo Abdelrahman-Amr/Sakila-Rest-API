@@ -6,6 +6,8 @@ package gov.iti.jets.entity;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
@@ -21,7 +23,7 @@ import java.util.List;
     @NamedQuery(name = "City.findByCityId", query = "SELECT c FROM City c WHERE c.cityId = :cityId"),
     @NamedQuery(name = "City.findByCity", query = "SELECT c FROM City c WHERE c.city = :city"),
     @NamedQuery(name = "City.findByLastUpdate", query = "SELECT c FROM City c WHERE c.lastUpdate = :lastUpdate")})
-public class City implements Serializable {
+public class City implements BaseEntity{
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -34,9 +36,9 @@ public class City implements Serializable {
     private String city;
     @Basic(optional = false)
     @Column(name = "last_update")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date lastUpdate;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cityId")
+//    @Temporal(TemporalType.TIMESTAMP)
+    private LocalDateTime lastUpdate;
+    @OneToMany(mappedBy = "cityId")
     private List<Address> addressList;
     @JoinColumn(name = "country_id", referencedColumnName = "country_id")
     @ManyToOne(optional = false)
@@ -49,7 +51,7 @@ public class City implements Serializable {
         this.cityId = cityId;
     }
 
-    public City(Short cityId, String city, Date lastUpdate) {
+    public City(Short cityId, String city, LocalDateTime lastUpdate) {
         this.cityId = cityId;
         this.city = city;
         this.lastUpdate = lastUpdate;
@@ -71,11 +73,11 @@ public class City implements Serializable {
         this.city = city;
     }
 
-    public Date getLastUpdate() {
+    public LocalDateTime getLastUpdate() {
         return lastUpdate;
     }
 
-    public void setLastUpdate(Date lastUpdate) {
+    public void setLastUpdate(LocalDateTime lastUpdate) {
         this.lastUpdate = lastUpdate;
     }
 

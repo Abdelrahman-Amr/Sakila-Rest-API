@@ -37,7 +37,7 @@ public class Country implements BaseEntity{
     @Column(name = "last_update")
 //    @Temporal(TemporalType.TIMESTAMP)
     private LocalDateTime lastUpdate;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "countryId")
+    @OneToMany( mappedBy = "countryId")
     private List<City> cityList;
 
     public Country() {
