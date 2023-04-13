@@ -10,6 +10,8 @@ import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 import jakarta.persistence.*;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 
 /**
@@ -24,6 +26,8 @@ import jakarta.persistence.*;
     @NamedQuery(name = "Actor.findByFirstName", query = "SELECT a FROM Actor a WHERE a.firstName = :firstName"),
     @NamedQuery(name = "Actor.findByLastName", query = "SELECT a FROM Actor a WHERE a.lastName = :lastName"),
     @NamedQuery(name = "Actor.findByLastUpdate", query = "SELECT a FROM Actor a WHERE a.lastUpdate = :lastUpdate")})
+@Data
+@NoArgsConstructor
 public class Actor implements BaseEntity {
 
     private static final long serialVersionUID = 1L;
@@ -45,59 +49,59 @@ public class Actor implements BaseEntity {
     @OneToMany( mappedBy = "actor")
     private List<FilmActor> filmActorList;
 
-    public Actor() {
-    }
+//    public Actor() {
+//    }
 
     public Actor(Integer actorId) {
         this.actorId = actorId;
     }
 
-    public Actor(Integer actorId, String firstName, String lastName, LocalDateTime lastUpdate) {
-        this.actorId = actorId;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.lastUpdate = lastUpdate;
-    }
-
-    public Integer getActorId() {
-        return actorId;
-    }
-
-    public void setActorId(Integer actorId) {
-        this.actorId = actorId;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public LocalDateTime getLastUpdate() {
-        return lastUpdate;
-    }
-
-    public void setLastUpdate(LocalDateTime lastUpdate) {
-        this.lastUpdate = lastUpdate;
-    }
-
-    public List<FilmActor> getFilmActorList() {
-        return filmActorList;
-    }
-
-    public void setFilmActorList(List<FilmActor> filmActorList) {
-        this.filmActorList = filmActorList;
-    }
+//    public Actor(Integer actorId, String firstName, String lastName, LocalDateTime lastUpdate) {
+//        this.actorId = actorId;
+//        this.firstName = firstName;
+//        this.lastName = lastName;
+//        this.lastUpdate = lastUpdate;
+//    }
+//
+//    public Integer getActorId() {
+//        return actorId;
+//    }
+//
+//    public void setActorId(Integer actorId) {
+//        this.actorId = actorId;
+//    }
+//
+//    public String getFirstName() {
+//        return firstName;
+//    }
+//
+//    public void setFirstName(String firstName) {
+//        this.firstName = firstName;
+//    }
+//
+//    public String getLastName() {
+//        return lastName;
+//    }
+//
+//    public void setLastName(String lastName) {
+//        this.lastName = lastName;
+//    }
+//
+//    public LocalDateTime getLastUpdate() {
+//        return lastUpdate;
+//    }
+//
+//    public void setLastUpdate(LocalDateTime lastUpdate) {
+//        this.lastUpdate = lastUpdate;
+//    }
+//
+//    public List<FilmActor> getFilmActorList() {
+//        return filmActorList;
+//    }
+//
+//    public void setFilmActorList(List<FilmActor> filmActorList) {
+//        this.filmActorList = filmActorList;
+//    }
 
     @Override
     public int hashCode() {

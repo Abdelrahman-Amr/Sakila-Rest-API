@@ -18,7 +18,6 @@ public abstract  class BaseServiceImpl<E extends BaseEntity, D extends BaseDto, 
         this.entityClass = entityClass;
         this.mapperClass = mapperClass;
         baseMapper = (BaseMapper<E, D>) Mappers.getMapper(mapperClass);
-
     }
     @Override
     public D findById(T id) {
@@ -37,8 +36,8 @@ public abstract  class BaseServiceImpl<E extends BaseEntity, D extends BaseDto, 
     @Override
     public D add(D dto) {
         BaseRepositoryImpl<E,T> baseRepository = new BaseRepositoryImpl<>(entityClass, MyLocal.getInstance().get());
-        E savelEntity = baseRepository.add(baseMapper.toEntity(dto));
-        return  baseMapper.toDto(savelEntity);
+        E savedEntity = baseRepository.add(baseMapper.toEntity(dto));
+        return  baseMapper.toDto(savedEntity);
     }
 
     @Override

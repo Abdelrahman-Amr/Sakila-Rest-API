@@ -4,6 +4,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 /**
@@ -19,6 +20,6 @@ public class AddressDto implements BaseDto {
     private  String postalCode;
     private  String phone;
     private  byte[] location;
-    private  Date lastUpdate;
+    private LocalDateTime lastUpdate;
     private CityDto cityId;
 }

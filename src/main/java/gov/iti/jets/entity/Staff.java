@@ -6,6 +6,7 @@ package gov.iti.jets.entity;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
@@ -26,7 +27,7 @@ import java.util.List;
     @NamedQuery(name = "Staff.findByUsername", query = "SELECT s FROM Staff s WHERE s.username = :username"),
     @NamedQuery(name = "Staff.findByPassword", query = "SELECT s FROM Staff s WHERE s.password = :password"),
     @NamedQuery(name = "Staff.findByLastUpdate", query = "SELECT s FROM Staff s WHERE s.lastUpdate = :lastUpdate")})
-public class Staff implements Serializable {
+public class Staff implements BaseEntity {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -55,19 +56,19 @@ public class Staff implements Serializable {
     private String password;
     @Basic(optional = false)
     @Column(name = "last_update")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date lastUpdate;
+//    @Temporal(TemporalType.TIMESTAMP)
+    private LocalDateTime lastUpdate;
     @JoinColumn(name = "address_id", referencedColumnName = "address_id")
     @ManyToOne(optional = false)
     private Address addressId;
     @JoinColumn(name = "store_id", referencedColumnName = "store_id")
     @ManyToOne(optional = false)
     private Store storeId;
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "managerStaffId")
+    @OneToOne( mappedBy = "managerStaffId")
     private Store store;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "staffId")
+    @OneToMany( mappedBy = "staffId")
     private List<Rental> rentalList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "staffId")
+    @OneToMany( mappedBy = "staffId")
     private List<Payment> paymentList;
 
     public Staff() {
@@ -77,7 +78,7 @@ public class Staff implements Serializable {
         this.staffId = staffId;
     }
 
-    public Staff(Short staffId, String firstName, String lastName, boolean active, String username, Date lastUpdate) {
+    public Staff(Short staffId, String firstName, String lastName, boolean active, String username, LocalDateTime lastUpdate) {
         this.staffId = staffId;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -150,11 +151,11 @@ public class Staff implements Serializable {
         this.password = password;
     }
 
-    public Date getLastUpdate() {
+    public LocalDateTime getLastUpdate() {
         return lastUpdate;
     }
 
-    public void setLastUpdate(Date lastUpdate) {
+    public void setLastUpdate(LocalDateTime lastUpdate) {
         this.lastUpdate = lastUpdate;
     }
 

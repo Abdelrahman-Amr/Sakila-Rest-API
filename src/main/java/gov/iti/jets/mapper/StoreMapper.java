@@ -6,11 +6,6 @@ import org.mapstruct.*;
 import org.mapstruct.Mapper;
 
 @Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = MappingConstants.ComponentModel.CDI)
-public interface StoreMapper {
-    Store toEntity(StoreDto storeDto);
+public interface StoreMapper extends BaseMapper<Store, StoreDto>{
 
-    StoreDto toDto(Store store);
-
-    @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
-    Store partialUpdate(StoreDto storeDto, @MappingTarget Store store);
 }

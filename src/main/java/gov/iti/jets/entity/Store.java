@@ -8,6 +8,7 @@ import gov.iti.jets.entity.Inventory;
 import gov.iti.jets.entity.Staff;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 import jakarta.persistence.*;
@@ -22,7 +23,7 @@ import jakarta.persistence.*;
     @NamedQuery(name = "Store.findAll", query = "SELECT s FROM Store s"),
     @NamedQuery(name = "Store.findByStoreId", query = "SELECT s FROM Store s WHERE s.storeId = :storeId"),
     @NamedQuery(name = "Store.findByLastUpdate", query = "SELECT s FROM Store s WHERE s.lastUpdate = :lastUpdate")})
-public class Store implements Serializable {
+public class Store implements BaseEntity {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -32,9 +33,9 @@ public class Store implements Serializable {
     private Short storeId;
     @Basic(optional = false)
     @Column(name = "last_update")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date lastUpdate;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "storeId")
+//    @Temporal(TemporalType.TIMESTAMP)
+    private LocalDateTime lastUpdate;
+    @OneToMany( mappedBy = "storeId")
     private List<Staff> staffList;
     @JoinColumn(name = "address_id", referencedColumnName = "address_id")
     @ManyToOne(optional = false)
@@ -42,9 +43,9 @@ public class Store implements Serializable {
     @JoinColumn(name = "manager_staff_id", referencedColumnName = "staff_id")
     @OneToOne(optional = false)
     private Staff managerStaffId;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "storeId")
+    @OneToMany( mappedBy = "storeId")
     private List<Inventory> inventoryList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "storeId")
+    @OneToMany( mappedBy = "storeId")
     private List<Customer> customerList;
 
     public Store() {
@@ -54,7 +55,7 @@ public class Store implements Serializable {
         this.storeId = storeId;
     }
 
-    public Store(Short storeId, Date lastUpdate) {
+    public Store(Short storeId, LocalDateTime lastUpdate) {
         this.storeId = storeId;
         this.lastUpdate = lastUpdate;
     }
@@ -67,11 +68,11 @@ public class Store implements Serializable {
         this.storeId = storeId;
     }
 
-    public Date getLastUpdate() {
+    public LocalDateTime getLastUpdate() {
         return lastUpdate;
     }
 
-    public void setLastUpdate(Date lastUpdate) {
+    public void setLastUpdate(LocalDateTime lastUpdate) {
         this.lastUpdate = lastUpdate;
     }
 

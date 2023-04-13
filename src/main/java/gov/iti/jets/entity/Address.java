@@ -4,6 +4,8 @@
  */
 package gov.iti.jets.entity;
 import jakarta.persistence.*;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
@@ -26,6 +28,8 @@ import java.util.List;
     @NamedQuery(name = "Address.findByPostalCode", query = "SELECT a FROM Address a WHERE a.postalCode = :postalCode"),
     @NamedQuery(name = "Address.findByPhone", query = "SELECT a FROM Address a WHERE a.phone = :phone"),
     @NamedQuery(name = "Address.findByLastUpdate", query = "SELECT a FROM Address a WHERE a.lastUpdate = :lastUpdate")})
+@Data
+@NoArgsConstructor
 public class Address implements BaseEntity{
 
     private static final long serialVersionUID = 1L;
@@ -58,15 +62,14 @@ public class Address implements BaseEntity{
     @JoinColumn(name = "city_id", referencedColumnName = "city_id")
     @ManyToOne(optional = false)
     private City cityId;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "addressId")
+    @OneToMany( mappedBy = "addressId")
     private List<Staff> staffList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "addressId")
+    @OneToMany( mappedBy = "addressId")
     private List<Store> storeList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "addressId")
+    @OneToMany( mappedBy = "addressId")
     private List<Customer> customerList;
 
-    public Address() {
-    }
+
 
     public Address(Short addressId) {
         this.addressId = addressId;
@@ -81,101 +84,6 @@ public class Address implements BaseEntity{
         this.lastUpdate = lastUpdate;
     }
 
-    public Short getAddressId() {
-        return addressId;
-    }
-
-    public void setAddressId(Short addressId) {
-        this.addressId = addressId;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public String getAddress2() {
-        return address2;
-    }
-
-    public void setAddress2(String address2) {
-        this.address2 = address2;
-    }
-
-    public String getDistrict() {
-        return district;
-    }
-
-    public void setDistrict(String district) {
-        this.district = district;
-    }
-
-    public String getPostalCode() {
-        return postalCode;
-    }
-
-    public void setPostalCode(String postalCode) {
-        this.postalCode = postalCode;
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-
-    public byte[] getLocation() {
-        return location;
-    }
-
-    public void setLocation(byte[] location) {
-        this.location = location;
-    }
-
-    public LocalDateTime getLastUpdate() {
-        return lastUpdate;
-    }
-
-    public void setLastUpdate(LocalDateTime lastUpdate) {
-        this.lastUpdate = lastUpdate;
-    }
-
-    public City getCityId() {
-        return cityId;
-    }
-
-    public void setCityId(City cityId) {
-        this.cityId = cityId;
-    }
-
-    public List<Staff> getStaffList() {
-        return staffList;
-    }
-
-    public void setStaffList(List<Staff> staffList) {
-        this.staffList = staffList;
-    }
-
-    public List<Store> getStoreList() {
-        return storeList;
-    }
-
-    public void setStoreList(List<Store> storeList) {
-        this.storeList = storeList;
-    }
-
-    public List<Customer> getCustomerList() {
-        return customerList;
-    }
-
-    public void setCustomerList(List<Customer> customerList) {
-        this.customerList = customerList;
-    }
 
     @Override
     public int hashCode() {
