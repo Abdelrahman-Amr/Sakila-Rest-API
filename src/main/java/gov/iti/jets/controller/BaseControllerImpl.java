@@ -27,8 +27,16 @@ public class BaseControllerImpl<E extends BaseEntity, D extends BaseDto, T> impl
         List<D> dtos = baseService.findAll();
         return  Response.accepted().entity(dtos).build();
     }
+    @GET
+    @Path("/getPage")
+    @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
+    public Response getPage(@QueryParam("page") int page, @QueryParam("limit") int limit)
+    {
+        List<D> dtos = baseService.getPage(page, limit);
+        return  Response.accepted().entity(dtos).build();
+    }
 
-        @Override
+    @Override
         @POST
         @Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
         @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})

@@ -33,6 +33,14 @@ public abstract  class BaseServiceImpl<E extends BaseEntity, D extends BaseDto, 
         List<E> entities = baseRepository.findAll();
         return  baseMapper.toDTOs(entities);
     }
+    @Override
+    public List<D> getPage(int page, int limit)
+    {
+        BaseRepositoryImpl<E,T> baseRepository = new BaseRepositoryImpl<>(entityClass, MyLocal.getInstance().get());
+        List<E> entities = baseRepository.getPage(page, limit);
+        return  baseMapper.toDTOs(entities);
+    }
+
 
     @Override
     public D add(D dto) {

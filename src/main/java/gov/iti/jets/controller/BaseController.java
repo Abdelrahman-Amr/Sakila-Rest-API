@@ -22,6 +22,10 @@ public interface BaseController <E extends BaseEntity, D extends BaseDto, T>{
     @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
     public Response findAll();
 
+    @GET
+    @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
+    public Response getPage(@QueryParam("page") int page, @QueryParam("limit") int limit);
+
     @POST
     @Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
     @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
