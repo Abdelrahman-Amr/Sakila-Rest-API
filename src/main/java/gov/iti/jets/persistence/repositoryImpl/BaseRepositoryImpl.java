@@ -40,7 +40,6 @@ public class BaseRepositoryImpl<E extends BaseEntity, T> implements BaseReposito
         List<E> entities = query.getResultList();
         return entities;
     }
-
     @Override
     public E add(E entity) {
         try{
