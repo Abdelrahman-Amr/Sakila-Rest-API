@@ -6,11 +6,6 @@ import org.mapstruct.*;
 import org.mapstruct.Mapper;
 
 @Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = MappingConstants.ComponentModel.CDI)
-public interface InventoryMapper {
-    Inventory toEntity(InventoryDto inventoryDto);
+public interface InventoryMapper  extends BaseMapper<Inventory, InventoryDto> {
 
-    InventoryDto toDto(Inventory inventory);
-
-    @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
-    Inventory partialUpdate(InventoryDto inventoryDto, @MappingTarget Inventory inventory);
 }

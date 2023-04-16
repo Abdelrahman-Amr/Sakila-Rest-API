@@ -1,17 +1,30 @@
 package gov.iti.jets.dto;
 
+import gov.iti.jets.dto.miniDto.MiniCustomerDto;
+import gov.iti.jets.dto.miniDto.MiniStaffDto;
+import gov.iti.jets.entity.Customer;
+import gov.iti.jets.entity.Inventory;
+import gov.iti.jets.entity.Staff;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 /**
  * A DTO for the {@link gov.iti.jets.entity.Rental} entity
  */
 @Data
-public class RentalDto implements Serializable {
-    private final Integer rentalId;
-    private final Date rentalDate;
-    private final Date returnDate;
-    private final Date lastUpdate;
+@NoArgsConstructor
+public class RentalDto extends BaseDto {
+    private  Integer rentalId;
+    private  LocalDateTime rentalDate;
+    private  LocalDateTime returnDate;
+    private MiniCustomerDto customerId;
+    private  InventoryDto inventoryId;
+    private MiniStaffDto staffId;
+
 }

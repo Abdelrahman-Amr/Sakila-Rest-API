@@ -1,8 +1,6 @@
 package gov.iti.jets.controller;
 
-import gov.iti.jets.dto.ActorDto;
 import gov.iti.jets.dto.FilmDto;
-import gov.iti.jets.entity.Actor;
 import gov.iti.jets.entity.Film;
 import gov.iti.jets.service.FilmService;
 import jakarta.ws.rs.*;

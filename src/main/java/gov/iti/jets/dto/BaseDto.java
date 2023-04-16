@@ -1,6 +1,11 @@
 package gov.iti.jets.dto;
 
-import java.io.Serializable;
+import lombok.Data;
 
-public interface BaseDto extends Serializable {
+import java.io.Serializable;
+import java.time.LocalDateTime;
+
+@Data
+public class BaseDto implements Serializable {
+    private LocalDateTime lastUpdate;
 }

@@ -117,9 +117,18 @@ public class City implements BaseEntity{
         return true;
     }
 
+//    @Override
+//    public String toString() {
+//        return "entity.City[ cityId=" + cityId + " ]";
+//    }
+//
+
     @Override
     public String toString() {
-        return "entity.City[ cityId=" + cityId + " ]";
+        return "City{" +
+                "cityId=" + cityId +
+                ", city='" + city + '\'' +
+                ", countryId=" + countryId +
+                '}';
     }
-    
 }

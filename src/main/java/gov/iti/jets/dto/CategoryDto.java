@@ -12,8 +12,8 @@ import java.util.Date;
  */
 @Data
 @NoArgsConstructor
-public class CategoryDto implements BaseDto {
+public class CategoryDto extends BaseDto {
     private  Short categoryId;
     private  String name;
-    private  LocalDateTime lastUpdate;
+//    private  LocalDateTime lastUpdate;
 }

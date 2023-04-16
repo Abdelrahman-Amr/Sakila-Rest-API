@@ -12,8 +12,8 @@ import java.util.Date;
  */
 @Data
 @NoArgsConstructor
-public class CountryDto implements BaseDto{
+public class CountryDto extends BaseDto{
     private  Short countryId;
     private  String country;
-    private  LocalDateTime lastUpdate;
+//    private  LocalDateTime lastUpdate;
 }

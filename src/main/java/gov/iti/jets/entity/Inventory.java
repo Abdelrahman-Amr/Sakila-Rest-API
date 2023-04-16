@@ -4,8 +4,11 @@
  */
 package gov.iti.jets.entity;
 import jakarta.persistence.*;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
@@ -16,11 +19,9 @@ import java.util.List;
  */
 @Entity
 @Table(name = "inventory")
-@NamedQueries({
-    @NamedQuery(name = "Inventory.findAll", query = "SELECT i FROM Inventory i"),
-    @NamedQuery(name = "Inventory.findByInventoryId", query = "SELECT i FROM Inventory i WHERE i.inventoryId = :inventoryId"),
-    @NamedQuery(name = "Inventory.findByLastUpdate", query = "SELECT i FROM Inventory i WHERE i.lastUpdate = :lastUpdate")})
-public class Inventory implements Serializable {
+@Data
+@NoArgsConstructor
+public class Inventory implements BaseEntity {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -30,68 +31,18 @@ public class Inventory implements Serializable {
     private Integer inventoryId;
     @Basic(optional = false)
     @Column(name = "last_update")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date lastUpdate;
+//    @Temporal(TemporalType.TIMESTAMP)
+    private LocalDateTime lastUpdate;
     @JoinColumn(name = "film_id", referencedColumnName = "film_id")
     @ManyToOne(optional = false)
     private Film filmId;
     @JoinColumn(name = "store_id", referencedColumnName = "store_id")
     @ManyToOne(optional = false)
     private Store storeId;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "inventoryId")
+    @OneToMany( mappedBy = "inventoryId")
     private List<Rental> rentalList;
 
-    public Inventory() {
-    }
 
-    public Inventory(Integer inventoryId) {
-        this.inventoryId = inventoryId;
-    }
-
-    public Inventory(Integer inventoryId, Date lastUpdate) {
-        this.inventoryId = inventoryId;
-        this.lastUpdate = lastUpdate;
-    }
-
-    public Integer getInventoryId() {
-        return inventoryId;
-    }
-
-    public void setInventoryId(Integer inventoryId) {
-        this.inventoryId = inventoryId;
-    }
-
-    public Date getLastUpdate() {
-        return lastUpdate;
-    }
-
-    public void setLastUpdate(Date lastUpdate) {
-        this.lastUpdate = lastUpdate;
-    }
-
-    public Film getFilmId() {
-        return filmId;
-    }
-
-    public void setFilmId(Film filmId) {
-        this.filmId = filmId;
-    }
-
-    public Store getStoreId() {
-        return storeId;
-    }
-
-    public void setStoreId(Store storeId) {
-        this.storeId = storeId;
-    }
-
-    public List<Rental> getRentalList() {
-        return rentalList;
-    }
-
-    public void setRentalList(List<Rental> rentalList) {
-        this.rentalList = rentalList;
-    }
 
     @Override
     public int hashCode() {

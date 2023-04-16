@@ -136,9 +136,13 @@ public class Store implements BaseEntity {
         return true;
     }
 
-    @Override
-    public String toString() {
-        return "entity.Store[ storeId=" + storeId + " ]";
-    }
+//    @Override
+//    public String toString() {
+//        return "entity.Store[ storeId=" + storeId + " ]";
+//    }
+@Override
+public String toString() {
+    return "entity.Store[ storeId=" + storeId +" addressId"+addressId.getAddressId();
+}
     
 }

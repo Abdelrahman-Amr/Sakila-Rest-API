@@ -12,9 +12,9 @@ import java.util.Date;
  */
 @Data
 @NoArgsConstructor
-public class StoreDto implements BaseDto{
+public class StoreDto extends BaseDto{
     private  Short storeId;
-    private  LocalDateTime lastUpdate;
+//    private  LocalDateTime lastUpdate;
     private AddressDto addressId;
     private ManagerDto managerStaffId;
 

@@ -6,11 +6,6 @@ import org.mapstruct.*;
 import org.mapstruct.Mapper;
 
 @Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = MappingConstants.ComponentModel.CDI)
-public interface RentalMapper {
-    Rental toEntity(RentalDto rentalDto);
+public interface RentalMapper extends BaseMapper<Rental, RentalDto> {
 
-    RentalDto toDto(Rental rental);
-
-    @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
-    Rental partialUpdate(RentalDto rentalDto, @MappingTarget Rental rental);
 }

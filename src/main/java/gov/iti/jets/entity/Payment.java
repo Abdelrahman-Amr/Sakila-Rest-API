@@ -7,8 +7,11 @@ import gov.iti.jets.entity.Customer;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.Date;
 import jakarta.persistence.*;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  *
@@ -16,13 +19,9 @@ import jakarta.persistence.*;
  */
 @Entity
 @Table(name = "payment")
-@NamedQueries({
-    @NamedQuery(name = "Payment.findAll", query = "SELECT p FROM Payment p"),
-    @NamedQuery(name = "Payment.findByPaymentId", query = "SELECT p FROM Payment p WHERE p.paymentId = :paymentId"),
-    @NamedQuery(name = "Payment.findByAmount", query = "SELECT p FROM Payment p WHERE p.amount = :amount"),
-    @NamedQuery(name = "Payment.findByPaymentDate", query = "SELECT p FROM Payment p WHERE p.paymentDate = :paymentDate"),
-    @NamedQuery(name = "Payment.findByLastUpdate", query = "SELECT p FROM Payment p WHERE p.lastUpdate = :lastUpdate")})
-public class Payment implements Serializable {
+@NoArgsConstructor
+@Data
+public class Payment implements BaseEntity {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -36,89 +35,20 @@ public class Payment implements Serializable {
     private BigDecimal amount;
     @Basic(optional = false)
     @Column(name = "payment_date")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date paymentDate;
+    private LocalDateTime paymentDate;
     @Column(name = "last_update")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date lastUpdate;
+    private LocalDateTime lastUpdate;
     @JoinColumn(name = "customer_id", referencedColumnName = "customer_id")
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Customer customerId;
     @JoinColumn(name = "rental_id", referencedColumnName = "rental_id")
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Rental rentalId;
     @JoinColumn(name = "staff_id", referencedColumnName = "staff_id")
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Staff staffId;
 
-    public Payment() {
-    }
 
-    public Payment(Short paymentId) {
-        this.paymentId = paymentId;
-    }
-
-    public Payment(Short paymentId, BigDecimal amount, Date paymentDate) {
-        this.paymentId = paymentId;
-        this.amount = amount;
-        this.paymentDate = paymentDate;
-    }
-
-    public Short getPaymentId() {
-        return paymentId;
-    }
-
-    public void setPaymentId(Short paymentId) {
-        this.paymentId = paymentId;
-    }
-
-    public BigDecimal getAmount() {
-        return amount;
-    }
-
-    public void setAmount(BigDecimal amount) {
-        this.amount = amount;
-    }
-
-    public Date getPaymentDate() {
-        return paymentDate;
-    }
-
-    public void setPaymentDate(Date paymentDate) {
-        this.paymentDate = paymentDate;
-    }
-
-    public Date getLastUpdate() {
-        return lastUpdate;
-    }
-
-    public void setLastUpdate(Date lastUpdate) {
-        this.lastUpdate = lastUpdate;
-    }
-
-    public Customer getCustomerId() {
-        return customerId;
-    }
-
-    public void setCustomerId(Customer customerId) {
-        this.customerId = customerId;
-    }
-
-    public Rental getRentalId() {
-        return rentalId;
-    }
-
-    public void setRentalId(Rental rentalId) {
-        this.rentalId = rentalId;
-    }
-
-    public Staff getStaffId() {
-        return staffId;
-    }
-
-    public void setStaffId(Staff staffId) {
-        this.staffId = staffId;
-    }
 
     @Override
     public int hashCode() {

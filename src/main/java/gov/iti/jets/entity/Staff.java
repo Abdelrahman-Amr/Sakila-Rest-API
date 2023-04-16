@@ -66,9 +66,9 @@ public class Staff implements BaseEntity {
     private Store storeId;
     @OneToOne( mappedBy = "managerStaffId")
     private Store store;
-    @OneToMany( mappedBy = "staffId")
+    @OneToMany( mappedBy = "staffId" , fetch = FetchType.LAZY)
     private List<Rental> rentalList;
-    @OneToMany( mappedBy = "staffId")
+    @OneToMany( mappedBy = "staffId",fetch = FetchType.LAZY)
     private List<Payment> paymentList;
 
     public Staff() {

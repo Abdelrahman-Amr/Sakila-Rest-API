@@ -1,6 +1,8 @@
 package gov.iti.jets.persistence.repositoryImpl;
 
 import gov.iti.jets.entity.BaseEntity;
+import gov.iti.jets.entity.City;
+import gov.iti.jets.entity.Country;
 import gov.iti.jets.persistence.repository.BaseRepository;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.Query;
@@ -50,6 +52,13 @@ public class BaseRepositoryImpl<E extends BaseEntity, T> implements BaseReposito
     public E update(E entity) {
         try{
             entityManager.getTransaction().begin();
+//            City cit = entityManager.find(City.class,602);
+//            Country c = new Country();
+//            c.setCountryId((short)2);
+//            c.setCountry("xxxx");
+//            c.setLastUpdate(cit.getLastUpdate());
+//            cit.setCountryId(c);
+
             entityManager.merge(entity);
         }catch (Exception ex)
         {
@@ -59,6 +68,7 @@ public class BaseRepositoryImpl<E extends BaseEntity, T> implements BaseReposito
         finally {
             entityManager.getTransaction().commit();
         }
+        entityManager.refresh(entity);
         return entity;
     }
 

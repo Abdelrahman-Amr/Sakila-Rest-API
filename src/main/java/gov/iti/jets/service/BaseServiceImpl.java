@@ -7,6 +7,7 @@ import gov.iti.jets.persistence.repositoryImpl.BaseRepositoryImpl;
 import gov.iti.jets.util.MyLocal;
 import org.mapstruct.factory.Mappers;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 public abstract  class BaseServiceImpl<E extends BaseEntity, D extends BaseDto, T>  implements BaseService<E,D,T > {
@@ -36,6 +37,7 @@ public abstract  class BaseServiceImpl<E extends BaseEntity, D extends BaseDto, 
     @Override
     public D add(D dto) {
         BaseRepositoryImpl<E,T> baseRepository = new BaseRepositoryImpl<>(entityClass, MyLocal.getInstance().get());
+        dto.setLastUpdate(LocalDateTime.now());
         E savedEntity = baseRepository.add(baseMapper.toEntity(dto));
         return  baseMapper.toDto(savedEntity);
     }
@@ -43,9 +45,11 @@ public abstract  class BaseServiceImpl<E extends BaseEntity, D extends BaseDto, 
     @Override
     public D update(T id, D dto) {
         BaseRepositoryImpl<E,T> baseRepository = new BaseRepositoryImpl<>(entityClass, MyLocal.getInstance().get());
+        dto.setLastUpdate(LocalDateTime.now());
         E entity = baseRepository.findById(id);
-        E ent = baseMapper.partialUpdate(dto,entity);
-        E  updatedEntity = baseRepository.update(ent);
+         entity = baseMapper.partialUpdate(dto,entity);
+        System.out.println(entity);
+        E  updatedEntity = baseRepository.update(entity);
         return baseMapper.toDto(updatedEntity);
     }
 

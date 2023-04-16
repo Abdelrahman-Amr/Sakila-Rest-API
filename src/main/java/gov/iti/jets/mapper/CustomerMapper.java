@@ -6,11 +6,6 @@ import org.mapstruct.*;
 import org.mapstruct.Mapper;
 
 @Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = MappingConstants.ComponentModel.CDI)
-public interface CustomerMapper {
-    Customer toEntity(CustomerDto customerDto);
+public interface CustomerMapper extends BaseMapper<Customer, CustomerDto>{
 
-    CustomerDto toDto(Customer customer);
-
-    @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
-    Customer partialUpdate(CustomerDto customerDto, @MappingTarget Customer customer);
 }

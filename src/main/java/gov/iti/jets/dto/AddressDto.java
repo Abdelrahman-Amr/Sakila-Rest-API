@@ -12,7 +12,7 @@ import java.util.Date;
  */
 @Data
 @NoArgsConstructor
-public class AddressDto implements BaseDto {
+public class AddressDto extends BaseDto {
     private  Short addressId;
     private  String address;
     private  String address2;
@@ -20,6 +20,6 @@ public class AddressDto implements BaseDto {
     private  String postalCode;
     private  String phone;
     private  byte[] location;
-    private LocalDateTime lastUpdate;
+//    private LocalDateTime lastUpdate;
     private CityDto cityId;
 }

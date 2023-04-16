@@ -7,8 +7,11 @@ import gov.iti.jets.entity.Customer;
 import gov.iti.jets.entity.Inventory;
 import gov.iti.jets.entity.Payment;
 import jakarta.persistence.*;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
@@ -19,13 +22,9 @@ import java.util.List;
  */
 @Entity
 @Table(name = "rental")
-@NamedQueries({
-    @NamedQuery(name = "Rental.findAll", query = "SELECT r FROM Rental r"),
-    @NamedQuery(name = "Rental.findByRentalId", query = "SELECT r FROM Rental r WHERE r.rentalId = :rentalId"),
-    @NamedQuery(name = "Rental.findByRentalDate", query = "SELECT r FROM Rental r WHERE r.rentalDate = :rentalDate"),
-    @NamedQuery(name = "Rental.findByReturnDate", query = "SELECT r FROM Rental r WHERE r.returnDate = :returnDate"),
-    @NamedQuery(name = "Rental.findByLastUpdate", query = "SELECT r FROM Rental r WHERE r.lastUpdate = :lastUpdate")})
-public class Rental implements Serializable {
+@Data
+@NoArgsConstructor
+public class Rental implements BaseEntity {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -35,103 +34,27 @@ public class Rental implements Serializable {
     private Integer rentalId;
     @Basic(optional = false)
     @Column(name = "rental_date")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date rentalDate;
+//    @Temporal(TemporalType.TIMESTAMP)
+    private LocalDateTime rentalDate;
     @Column(name = "return_date")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date returnDate;
+//    @Temporal(TemporalType.TIMESTAMP)
+    private LocalDateTime returnDate;
     @Basic(optional = false)
     @Column(name = "last_update")
     @Temporal(TemporalType.TIMESTAMP)
-    private Date lastUpdate;
+    private LocalDateTime lastUpdate;
     @JoinColumn(name = "customer_id", referencedColumnName = "customer_id")
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = false,fetch = FetchType.LAZY)
     private Customer customerId;
     @JoinColumn(name = "inventory_id", referencedColumnName = "inventory_id")
     @ManyToOne(optional = false)
     private Inventory inventoryId;
     @JoinColumn(name = "staff_id", referencedColumnName = "staff_id")
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Staff staffId;
-    @OneToMany(mappedBy = "rentalId")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "rentalId")
     private List<Payment> paymentList;
 
-    public Rental() {
-    }
-
-    public Rental(Integer rentalId) {
-        this.rentalId = rentalId;
-    }
-
-    public Rental(Integer rentalId, Date rentalDate, Date lastUpdate) {
-        this.rentalId = rentalId;
-        this.rentalDate = rentalDate;
-        this.lastUpdate = lastUpdate;
-    }
-
-    public Integer getRentalId() {
-        return rentalId;
-    }
-
-    public void setRentalId(Integer rentalId) {
-        this.rentalId = rentalId;
-    }
-
-    public Date getRentalDate() {
-        return rentalDate;
-    }
-
-    public void setRentalDate(Date rentalDate) {
-        this.rentalDate = rentalDate;
-    }
-
-    public Date getReturnDate() {
-        return returnDate;
-    }
-
-    public void setReturnDate(Date returnDate) {
-        this.returnDate = returnDate;
-    }
-
-    public Date getLastUpdate() {
-        return lastUpdate;
-    }
-
-    public void setLastUpdate(Date lastUpdate) {
-        this.lastUpdate = lastUpdate;
-    }
-
-    public Customer getCustomerId() {
-        return customerId;
-    }
-
-    public void setCustomerId(Customer customerId) {
-        this.customerId = customerId;
-    }
-
-    public Inventory getInventoryId() {
-        return inventoryId;
-    }
-
-    public void setInventoryId(Inventory inventoryId) {
-        this.inventoryId = inventoryId;
-    }
-
-    public Staff getStaffId() {
-        return staffId;
-    }
-
-    public void setStaffId(Staff staffId) {
-        this.staffId = staffId;
-    }
-
-    public List<Payment> getPaymentList() {
-        return paymentList;
-    }
-
-    public void setPaymentList(List<Payment> paymentList) {
-        this.paymentList = paymentList;
-    }
 
     @Override
     public int hashCode() {

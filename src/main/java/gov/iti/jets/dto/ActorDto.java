@@ -12,9 +12,9 @@ import java.util.Date;
  */
 @Data
 @NoArgsConstructor
-public class ActorDto implements BaseDto {
+public class ActorDto extends BaseDto {
     private  Integer actorId;
     private  String firstName;
     private  String lastName;
-    private LocalDateTime lastUpdate;
+//    private LocalDateTime lastUpdate;
 }

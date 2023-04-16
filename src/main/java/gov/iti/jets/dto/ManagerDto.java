@@ -7,7 +7,7 @@ import java.time.LocalDateTime;
 
 @Data
 @NoArgsConstructor
-public class ManagerDto implements BaseDto {
+public class ManagerDto extends BaseDto {
     private Short staffId;
     private  String firstName;
     private  String lastName;
@@ -16,8 +16,8 @@ public class ManagerDto implements BaseDto {
     private  boolean active;
     private  String username;
     private  String password;
-    private LocalDateTime lastUpdate;
-    private AddressDto addressId;
+//    private LocalDateTime lastUpdate;
+//    private AddressDto addressId;
     //    private Short storeid;
 
     }

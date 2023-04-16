@@ -12,7 +12,7 @@ import java.util.Date;
  */
 @Data
 @NoArgsConstructor
-public class StaffDto implements BaseDto {
+public class StaffDto extends BaseDto {
     private Short staffId;
     private  String firstName;
     private  String lastName;
@@ -21,8 +21,6 @@ public class StaffDto implements BaseDto {
     private  boolean active;
     private  String username;
     private  String password;
-    private LocalDateTime lastUpdate;
     private AddressDto addressId;
-//    private Short storeid;
     private StoreDto storeId;
 }

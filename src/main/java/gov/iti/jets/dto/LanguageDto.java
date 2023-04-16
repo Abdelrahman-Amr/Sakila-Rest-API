@@ -12,10 +12,10 @@ import java.util.Date;
  */
 @Data
 @NoArgsConstructor
-public class LanguageDto implements BaseDto{
+public class LanguageDto extends BaseDto{
     private  Short languageId;
     private  String name;
-    private LocalDateTime lastUpdate;
+//    private LocalDateTime lastUpdate;
 
 
 }
