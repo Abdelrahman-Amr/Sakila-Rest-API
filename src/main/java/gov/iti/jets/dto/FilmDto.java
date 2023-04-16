@@ -7,6 +7,7 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.Year;
 import java.util.Date;
 
 /**
@@ -18,12 +19,14 @@ public class FilmDto extends BaseDto {
     private  Short filmId;
     private  String title;
     private  String description;
-    private LocalDate releaseYear;
+    private Integer releaseYear;
     private  Short rentalDuration;
     private  BigDecimal rentalRate;
     private  Short length;
     private  BigDecimal replacementCost;
     private  String rating;
     private  String specialFeatures;
+    private LanguageDto languageId;
+
 //    private LocalDateTime lastUpdate;
 }
