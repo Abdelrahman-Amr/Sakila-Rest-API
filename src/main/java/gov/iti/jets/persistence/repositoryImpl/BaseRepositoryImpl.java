@@ -35,7 +35,6 @@ public class BaseRepositoryImpl<E extends BaseEntity, T> implements BaseReposito
     @Override
     public List<E> getPage(int page, int limit) {
 
-
         Query query = entityManager.createQuery("from "+entityClass.getName(),entityClass).setFirstResult((page-1)*limit).setMaxResults(limit);
         List<E> entities = query.getResultList();
         return entities;

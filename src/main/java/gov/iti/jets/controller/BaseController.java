@@ -23,6 +23,7 @@ public interface BaseController <E extends BaseEntity, D extends BaseDto, T>{
     public Response findAll();
 
     @GET
+    @Path("/getPage")
     @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
     public Response getPage(@QueryParam("page") int page, @QueryParam("limit") int limit);
 

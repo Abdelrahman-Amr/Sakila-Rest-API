@@ -7,5 +7,5 @@ import java.time.LocalDateTime;
 
 @Data
 public class BaseDto implements Serializable {
-    private LocalDateTime lastUpdate;
+    private transient  LocalDateTime lastUpdate;
 }
