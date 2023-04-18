@@ -1,6 +1,7 @@
 package gov.iti.jets.controller;
 
 import gov.iti.jets.entity.Actor;
+import gov.iti.jets.persistence.repositoryImpl.ActorRepositoryImpl;
 import gov.iti.jets.service.ActorService;
 import gov.iti.jets.dto.ActorDto;
 import gov.iti.jets.service.FilmService;
@@ -19,5 +20,15 @@ public class ActorController extends BaseControllerImpl<Actor, ActorDto, Integer
     {
         actorService = ActorService.getInstance();
         baseService = actorService;
+    }
+
+    @GET
+    @Path("/filter")
+    @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
+    public Response findByName(@QueryParam("name") String name)
+    {
+        List<ActorDto> actorDtos = actorService.findByName(name);
+        return  Response.accepted().entity(actorDtos).build();
+
     }
 }

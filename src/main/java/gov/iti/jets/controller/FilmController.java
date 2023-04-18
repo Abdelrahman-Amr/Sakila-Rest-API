@@ -23,7 +23,7 @@ public class FilmController extends BaseControllerImpl<Film,FilmDto, Short> {
     @GET
     @Path("/filter")
     @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-    public Response findFilmsByActorId(@QueryParam("actorId") Integer actorId)
+    public Response findFilmsByActorId(@DefaultValue("1") @QueryParam("actorId") Integer actorId)
     {
         List<FilmDto> filmDtos = filmService.findFilmsByActorId(actorId);
         return  Response.accepted().entity(filmDtos).build();

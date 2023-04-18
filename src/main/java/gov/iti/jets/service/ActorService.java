@@ -3,6 +3,12 @@ package gov.iti.jets.service;
 import gov.iti.jets.entity.Actor;
 import gov.iti.jets.mapper.ActorMapper;
 import gov.iti.jets.dto.ActorDto;
+import gov.iti.jets.persistence.repositoryImpl.ActorRepositoryImpl;
+import gov.iti.jets.persistence.repositoryImpl.BaseRepositoryImpl;
+import gov.iti.jets.util.MyLocal;
+import jakarta.persistence.Query;
+
+import java.util.List;
 
 public class ActorService extends BaseServiceImpl<Actor, ActorDto, Integer>{
 
@@ -24,6 +30,13 @@ public class ActorService extends BaseServiceImpl<Actor, ActorDto, Integer>{
             }
         }
         return  actorService;
+    }
+
+    public List<ActorDto> findByName(String name)
+    {
+        ActorRepositoryImpl actorRepository = new ActorRepositoryImpl();
+        List<Actor> actors = actorRepository.findByName(name);
+        return baseMapper.toDTOs(actors);
     }
 
 }

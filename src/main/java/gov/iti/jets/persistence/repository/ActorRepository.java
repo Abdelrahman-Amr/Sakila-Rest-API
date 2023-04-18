@@ -8,4 +8,6 @@ import java.util.Set;
 
 public interface ActorRepository extends BaseRepository<Actor, Integer>{
 
+    List<Actor> findByName(String name);
+
 }
