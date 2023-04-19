@@ -6,8 +6,5 @@ import org.mapstruct.Mapper;
 
 @Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = MappingConstants.ComponentModel.CDI)
 public interface FilmCategoryPKMapper {
-    FilmCategoryPK toEntity(FilmCategoryPK filmCategoryPK);
 
-    @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
-    FilmCategoryPK partialUpdate(FilmCategoryPK filmCategoryPKDto, @MappingTarget FilmCategoryPK filmCategoryPK);
 }

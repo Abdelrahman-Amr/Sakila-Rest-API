@@ -42,4 +42,17 @@ public class StaffController extends BaseControllerImpl<Staff, StaffDto, Short> 
         return  Response.accepted().entity(staffDtos).build();
 
     }
+
+    @PUT
+    @Path("/updatePicture/{id}")
+    public Response updateStaffPicture(@PathParam("id") short id, byte[] picture)
+    {
+        boolean isUpdated =  staffService.updateStaffPicture(id, picture);
+        if(isUpdated)
+        {
+            return  Response.accepted().entity("Updated Successfully").build();
+        }
+        return  Response.status(Response.Status.BAD_REQUEST).entity("Failed to update the picture").build();
+
+    }
 }

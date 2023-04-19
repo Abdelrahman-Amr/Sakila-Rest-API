@@ -10,6 +10,8 @@ public interface StaffRepository extends BaseRepository<Staff, Short>{
 
     public List<Staff> findByName(String name);
 
+    public boolean updateStaffPicture(short id, byte[] picture);
+
 
 }
 

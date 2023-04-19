@@ -18,11 +18,6 @@ import java.util.List;
  */
 @Entity
 @Table(name = "city")
-@NamedQueries({
-    @NamedQuery(name = "City.findAll", query = "SELECT c FROM City c"),
-    @NamedQuery(name = "City.findByCityId", query = "SELECT c FROM City c WHERE c.cityId = :cityId"),
-    @NamedQuery(name = "City.findByCity", query = "SELECT c FROM City c WHERE c.city = :city"),
-    @NamedQuery(name = "City.findByLastUpdate", query = "SELECT c FROM City c WHERE c.lastUpdate = :lastUpdate")})
 public class City implements BaseEntity{
 
     private static final long serialVersionUID = 1L;

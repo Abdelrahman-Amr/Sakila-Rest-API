@@ -60,7 +60,7 @@ public class BaseRepositoryImpl<E extends BaseEntity, T> implements BaseReposito
         try{
             entityManager.getTransaction().begin();
 
-            entityManager.merge(entity);
+           entity =  entityManager.merge(entity);
         }catch (Exception ex)
         {
             entity = null;

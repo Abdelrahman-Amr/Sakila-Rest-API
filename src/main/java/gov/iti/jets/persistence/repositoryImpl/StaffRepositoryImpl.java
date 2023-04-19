@@ -28,6 +28,18 @@ public class StaffRepositoryImpl  extends  BaseRepositoryImpl<Staff, Short> impl
     }
 
     @Override
+    public boolean updateStaffPicture(short id, byte[] picture)
+    {
+        Staff staff = entityManager.find(Staff.class, id);
+        staff.setPicture(picture);
+        if(this.update(staff)!=null)
+        {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
     public List<Staff> findByName(String name)
     {
         Query query = entityManager.createQuery("from Staff a where a.firstName ilike '%' || :name || '%' or a.lastName ilike '%' || :name || '%'   ", Actor.class);

@@ -45,6 +45,12 @@ public class StaffService extends BaseServiceImpl<Staff, StaffDto, Short> {
         return  picture;
     }
 
+    public boolean updateStaffPicture(short id, byte[] picture)
+    {
+        StaffRepositoryImpl staffRepository = new StaffRepositoryImpl();
+        return staffRepository.updateStaffPicture(id, picture);
+    }
+
     public List<StaffDto> findByName(String name)
     {
         StaffRepositoryImpl staffRepository = new StaffRepositoryImpl();
