@@ -59,12 +59,6 @@ public class BaseRepositoryImpl<E extends BaseEntity, T> implements BaseReposito
     public E update(E entity) {
         try{
             entityManager.getTransaction().begin();
-//            City cit = entityManager.find(City.class,602);
-//            Country c = new Country();
-//            c.setCountryId((short)2);
-//            c.setCountry("xxxx");
-//            c.setLastUpdate(cit.getLastUpdate());
-//            cit.setCountryId(c);
 
             entityManager.merge(entity);
         }catch (Exception ex)

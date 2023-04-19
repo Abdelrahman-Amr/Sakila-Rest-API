@@ -55,7 +55,7 @@ public abstract  class BaseServiceImpl<E extends BaseEntity, D extends BaseDto, 
         BaseRepositoryImpl<E,T> baseRepository = new BaseRepositoryImpl<>(entityClass, MyLocal.getInstance().get());
         dto.setLastUpdate(LocalDateTime.now());
         E entity = baseRepository.findById(id);
-         entity = baseMapper.partialUpdate(dto,entity);
+        entity = baseMapper.partialUpdate(dto,entity);
         System.out.println(entity);
         E  updatedEntity = baseRepository.update(entity);
         return baseMapper.toDto(updatedEntity);
