@@ -19,11 +19,6 @@ import java.util.List;
  */
 @Entity
 @Table(name = "category")
-@NamedQueries({
-    @NamedQuery(name = "Category.findAll", query = "SELECT c FROM Category c"),
-    @NamedQuery(name = "Category.findByCategoryId", query = "SELECT c FROM Category c WHERE c.categoryId = :categoryId"),
-    @NamedQuery(name = "Category.findByName", query = "SELECT c FROM Category c WHERE c.name = :name"),
-    @NamedQuery(name = "Category.findByLastUpdate", query = "SELECT c FROM Category c WHERE c.lastUpdate = :lastUpdate")})
 
 public class Category implements BaseEntity {
 
@@ -38,7 +33,7 @@ public class Category implements BaseEntity {
     private String name;
     @Basic(optional = false)
     @Column(name = "last_update")
-//    @Temporal(TemporalType.TIMESTAMP)
+    @Temporal(TemporalType.TIMESTAMP)
     private LocalDateTime lastUpdate;
     @OneToMany( mappedBy = "category")
     private List<FilmCategory> filmCategoryList;

@@ -32,17 +32,18 @@ public class Rental implements BaseEntity {
     @Basic(optional = false)
     @Column(name = "rental_id")
     private Integer rentalId;
+
     @Basic(optional = false)
     @Column(name = "rental_date")
-//    @Temporal(TemporalType.TIMESTAMP)
     private LocalDateTime rentalDate;
+
     @Column(name = "return_date")
-//    @Temporal(TemporalType.TIMESTAMP)
     private LocalDateTime returnDate;
+
     @Basic(optional = false)
     @Column(name = "last_update")
-    @Temporal(TemporalType.TIMESTAMP)
     private LocalDateTime lastUpdate;
+
     @JoinColumn(name = "customer_id", referencedColumnName = "customer_id")
     @ManyToOne(optional = false,fetch = FetchType.LAZY)
     private Customer customerId;

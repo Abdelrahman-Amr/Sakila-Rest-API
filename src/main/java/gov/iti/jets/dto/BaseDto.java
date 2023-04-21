@@ -1,5 +1,6 @@
 package gov.iti.jets.dto;
 
+import jakarta.xml.bind.annotation.XmlRootElement;
 import lombok.Data;
 
 import java.io.Serializable;

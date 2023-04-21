@@ -29,10 +29,11 @@ public class Inventory implements BaseEntity {
     @Basic(optional = false)
     @Column(name = "inventory_id")
     private Integer inventoryId;
+
     @Basic(optional = false)
     @Column(name = "last_update")
-//    @Temporal(TemporalType.TIMESTAMP)
     private LocalDateTime lastUpdate;
+
     @JoinColumn(name = "film_id", referencedColumnName = "film_id")
     @ManyToOne(optional = false)
     private Film filmId;

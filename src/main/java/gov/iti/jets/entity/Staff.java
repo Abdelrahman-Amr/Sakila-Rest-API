@@ -17,16 +17,6 @@ import java.util.List;
  */
 @Entity
 @Table(name = "staff")
-@NamedQueries({
-    @NamedQuery(name = "Staff.findAll", query = "SELECT s FROM Staff s"),
-    @NamedQuery(name = "Staff.findByStaffId", query = "SELECT s FROM Staff s WHERE s.staffId = :staffId"),
-    @NamedQuery(name = "Staff.findByFirstName", query = "SELECT s FROM Staff s WHERE s.firstName = :firstName"),
-    @NamedQuery(name = "Staff.findByLastName", query = "SELECT s FROM Staff s WHERE s.lastName = :lastName"),
-    @NamedQuery(name = "Staff.findByEmail", query = "SELECT s FROM Staff s WHERE s.email = :email"),
-    @NamedQuery(name = "Staff.findByActive", query = "SELECT s FROM Staff s WHERE s.active = :active"),
-    @NamedQuery(name = "Staff.findByUsername", query = "SELECT s FROM Staff s WHERE s.username = :username"),
-    @NamedQuery(name = "Staff.findByPassword", query = "SELECT s FROM Staff s WHERE s.password = :password"),
-    @NamedQuery(name = "Staff.findByLastUpdate", query = "SELECT s FROM Staff s WHERE s.lastUpdate = :lastUpdate")})
 public class Staff implements BaseEntity {
 
     private static final long serialVersionUID = 1L;
@@ -56,7 +46,6 @@ public class Staff implements BaseEntity {
     private String password;
     @Basic(optional = false)
     @Column(name = "last_update")
-//    @Temporal(TemporalType.TIMESTAMP)
     private LocalDateTime lastUpdate;
     @JoinColumn(name = "address_id", referencedColumnName = "address_id")
     @ManyToOne(optional = false)

@@ -5,6 +5,7 @@ import gov.iti.jets.persistence.repository.ActorRepository;
 import gov.iti.jets.persistence.repositoryImpl.BaseRepositoryImpl;
 import gov.iti.jets.util.MyLocal;
 import jakarta.persistence.Query;
+import jakarta.persistence.TypedQuery;
 
 import java.util.List;
 
@@ -18,10 +19,9 @@ public class ActorRepositoryImpl extends BaseRepositoryImpl<Actor, Integer> impl
     @Override
     public List<Actor> findByName(String name)
     {
-        Query query = entityManager.createQuery("from Actor a where a.firstName ilike '%' || :name || '%' or a.lastName ilike '%' || :name || '%'   ",Actor.class);
+        TypedQuery<Actor> query = entityManager.createNamedQuery("Actor.getByName",Actor.class);
         query.setParameter("name", name);
-        List<Actor> actors = query.getResultList();
-        return actors;
+        return  query.getResultList();
     }
 
 }

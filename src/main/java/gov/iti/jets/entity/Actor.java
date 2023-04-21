@@ -20,12 +20,10 @@ import lombok.NoArgsConstructor;
  */
 @Entity
 @Table(name = "actor")
-@NamedQueries({
-    @NamedQuery(name = "Actor.findAll", query = "SELECT a FROM Actor a"),
-    @NamedQuery(name = "Actor.findByActorId", query = "SELECT a FROM Actor a WHERE a.actorId = :actorId"),
-    @NamedQuery(name = "Actor.findByFirstName", query = "SELECT a FROM Actor a WHERE a.firstName = :firstName"),
-    @NamedQuery(name = "Actor.findByLastName", query = "SELECT a FROM Actor a WHERE a.lastName = :lastName"),
-    @NamedQuery(name = "Actor.findByLastUpdate", query = "SELECT a FROM Actor a WHERE a.lastUpdate = :lastUpdate")})
+@NamedQueries(
+        @NamedQuery(name = "Actor.getByName",
+                query = "from Actor a where a.firstName ilike '%' || :name || '%' or a.lastName ilike '%' || :name || '%' ")
+    )
 @Data
 @NoArgsConstructor
 public class Actor implements BaseEntity {

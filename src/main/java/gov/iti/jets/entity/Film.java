@@ -31,15 +31,18 @@ public class Film implements BaseEntity {
     @Basic(optional = false)
     @Column(name = "film_id")
     private Short filmId;
+
     @Basic(optional = false)
     @Column(name = "title")
     private String title;
+
     @Lob
     @Column(name = "description")
     private String description;
+
     @Column(name = "release_year")
-//    @Temporal(TemporalType.DATE)
     private Integer releaseYear;
+
     @Basic(optional = false)
     @Column(name = "rental_duration")
     private short rentalDuration;
@@ -56,10 +59,10 @@ public class Film implements BaseEntity {
     private String rating;
     @Column(name = "special_features")
     private String specialFeatures;
-    @Basic(optional = false)
+
     @Column(name = "last_update")
-//    @Temporal(TemporalType.TIMESTAMP)
     private LocalDateTime lastUpdate;
+
     @OneToMany( mappedBy = "film")
     private List<FilmCategory> filmCategoryList;
     @OneToMany( mappedBy = "film")

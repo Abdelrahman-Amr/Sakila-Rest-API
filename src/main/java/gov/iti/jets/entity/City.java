@@ -31,7 +31,6 @@ public class City implements BaseEntity{
     private String city;
     @Basic(optional = false)
     @Column(name = "last_update")
-//    @Temporal(TemporalType.TIMESTAMP)
     private LocalDateTime lastUpdate;
     @OneToMany(mappedBy = "cityId")
     private List<Address> addressList;

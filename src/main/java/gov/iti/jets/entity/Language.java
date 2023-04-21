@@ -18,11 +18,6 @@ import java.util.List;
  */
 @Entity
 @Table(name = "language")
-@NamedQueries({
-    @NamedQuery(name = "Language.findAll", query = "SELECT l FROM Language l"),
-    @NamedQuery(name = "Language.findByLanguageId", query = "SELECT l FROM Language l WHERE l.languageId = :languageId"),
-    @NamedQuery(name = "Language.findByName", query = "SELECT l FROM Language l WHERE l.name = :name"),
-    @NamedQuery(name = "Language.findByLastUpdate", query = "SELECT l FROM Language l WHERE l.lastUpdate = :lastUpdate")})
 public class Language implements BaseEntity {
 
     private static final long serialVersionUID = 1L;
@@ -36,7 +31,6 @@ public class Language implements BaseEntity {
     private String name;
     @Basic(optional = false)
     @Column(name = "last_update")
-//    @Temporal(TemporalType.TIMESTAMP)
     private LocalDateTime lastUpdate;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "languageId")
     private List<Film> filmList;

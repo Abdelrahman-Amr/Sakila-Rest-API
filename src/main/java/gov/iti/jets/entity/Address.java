@@ -19,15 +19,6 @@ import java.util.List;
  */
 @Entity
 @Table(name = "address")
-@NamedQueries({
-    @NamedQuery(name = "Address.findAll", query = "SELECT a FROM Address a"),
-    @NamedQuery(name = "Address.findByAddressId", query = "SELECT a FROM Address a WHERE a.addressId = :addressId"),
-    @NamedQuery(name = "Address.findByAddress", query = "SELECT a FROM Address a WHERE a.address = :address"),
-    @NamedQuery(name = "Address.findByAddress2", query = "SELECT a FROM Address a WHERE a.address2 = :address2"),
-    @NamedQuery(name = "Address.findByDistrict", query = "SELECT a FROM Address a WHERE a.district = :district"),
-    @NamedQuery(name = "Address.findByPostalCode", query = "SELECT a FROM Address a WHERE a.postalCode = :postalCode"),
-    @NamedQuery(name = "Address.findByPhone", query = "SELECT a FROM Address a WHERE a.phone = :phone"),
-    @NamedQuery(name = "Address.findByLastUpdate", query = "SELECT a FROM Address a WHERE a.lastUpdate = :lastUpdate")})
 @Data
 @NoArgsConstructor
 public class Address implements BaseEntity{
@@ -55,10 +46,11 @@ public class Address implements BaseEntity{
     @Lob
     @Column(name = "location")
     private byte[] location;
+
     @Basic(optional = false)
     @Column(name = "last_update")
-//    @Temporal(TemporalType.TIMESTAMP)
     private LocalDateTime lastUpdate;
+
     @JoinColumn(name = "city_id", referencedColumnName = "city_id")
     @ManyToOne(optional = false)
     private City cityId;

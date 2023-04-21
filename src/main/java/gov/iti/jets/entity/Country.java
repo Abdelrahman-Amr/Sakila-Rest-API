@@ -35,7 +35,6 @@ public class Country implements BaseEntity{
     private String country;
     @Basic(optional = false)
     @Column(name = "last_update")
-//    @Temporal(TemporalType.TIMESTAMP)
     private LocalDateTime lastUpdate;
     @OneToMany( mappedBy = "countryId")
     private List<City> cityList;

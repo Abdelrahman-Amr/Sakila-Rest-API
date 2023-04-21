@@ -9,6 +9,8 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.Date;
+
+import gov.iti.jets.entity.listener.EntityListener;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -21,6 +23,7 @@ import lombok.NoArgsConstructor;
 @Table(name = "payment")
 @NoArgsConstructor
 @Data
+@EntityListeners(EntityListener.class)
 public class Payment implements BaseEntity {
 
     private static final long serialVersionUID = 1L;
@@ -36,8 +39,10 @@ public class Payment implements BaseEntity {
     @Basic(optional = false)
     @Column(name = "payment_date")
     private LocalDateTime paymentDate;
+
     @Column(name = "last_update")
     private LocalDateTime lastUpdate;
+
     @JoinColumn(name = "customer_id", referencedColumnName = "customer_id")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Customer customerId;

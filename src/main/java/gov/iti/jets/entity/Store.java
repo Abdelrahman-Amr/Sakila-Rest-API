@@ -19,10 +19,6 @@ import jakarta.persistence.*;
  */
 @Entity
 @Table(name = "store")
-@NamedQueries({
-    @NamedQuery(name = "Store.findAll", query = "SELECT s FROM Store s"),
-    @NamedQuery(name = "Store.findByStoreId", query = "SELECT s FROM Store s WHERE s.storeId = :storeId"),
-    @NamedQuery(name = "Store.findByLastUpdate", query = "SELECT s FROM Store s WHERE s.lastUpdate = :lastUpdate")})
 public class Store implements BaseEntity {
 
     private static final long serialVersionUID = 1L;
@@ -33,7 +29,6 @@ public class Store implements BaseEntity {
     private Short storeId;
     @Basic(optional = false)
     @Column(name = "last_update")
-//    @Temporal(TemporalType.TIMESTAMP)
     private LocalDateTime lastUpdate;
     @OneToMany( mappedBy = "storeId")
     private List<Staff> staffList;
