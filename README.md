@@ -141,6 +141,7 @@ A java restful api using JAX-RS for a DVD rental store website(Sakila).
 git clone https://github.com/Abdelrahman-Amr/Sakila-Soap-API.git
 ```
 ### Run the project
+### Navigate to the project follder
 ```maven 
 catalina start
 mvn install tomcat7:redeploy
