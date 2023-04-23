@@ -37,6 +37,7 @@ public class BaseRepositoryImpl<E extends BaseEntity, T> implements BaseReposito
 
         Query query = entityManager.createQuery("from "+entityClass.getName(),entityClass).setFirstResult((page-1)*limit).setMaxResults(limit);
         List<E> entities = query.getResultList();
+        System.out.println("page = "+ entities.size());
         return entities;
     }
     @Override

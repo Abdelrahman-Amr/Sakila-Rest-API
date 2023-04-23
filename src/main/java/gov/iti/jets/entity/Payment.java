@@ -3,14 +3,12 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package gov.iti.jets.entity;
-import gov.iti.jets.entity.Customer;
 
-import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.Date;
 
-import gov.iti.jets.entity.listener.EntityListener;
+import gov.iti.jets.entity.listener.PaymentListener;
+import gov.iti.jets.entity.listener.PaymentListener;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -23,7 +21,7 @@ import lombok.NoArgsConstructor;
 @Table(name = "payment")
 @NoArgsConstructor
 @Data
-@EntityListeners(EntityListener.class)
+@EntityListeners(PaymentListener.class)
 public class Payment implements BaseEntity {
 
     private static final long serialVersionUID = 1L;
@@ -36,7 +34,7 @@ public class Payment implements BaseEntity {
     @Basic(optional = false)
     @Column(name = "amount")
     private BigDecimal amount;
-    @Basic(optional = false)
+
     @Column(name = "payment_date")
     private LocalDateTime paymentDate;
 

@@ -13,7 +13,7 @@ import jakarta.ws.rs.core.Response;
 
 import java.util.List;
 
-@Path("staff")
+@Path("staffs")
 public class StaffController extends BaseControllerImpl<Staff, StaffDto, Short> {
 
     private StaffService staffService;

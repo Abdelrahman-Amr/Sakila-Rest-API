@@ -4,14 +4,12 @@
  */
 package gov.iti.jets.entity;
 
-import gov.iti.jets.entity.listener.EntityListener;
+import gov.iti.jets.entity.listener.CustomerListener;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.io.Serializable;
 import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.List;
 
 
@@ -23,7 +21,7 @@ import java.util.List;
 @Table(name = "customer")
 @Data
 @NoArgsConstructor
-@EntityListeners(EntityListener.class)
+@EntityListeners(CustomerListener.class)
 public class Customer implements BaseEntity {
 
     private static final long serialVersionUID = 1L;
@@ -44,7 +42,6 @@ public class Customer implements BaseEntity {
     @Column(name = "active")
     private boolean active;
 
-    @Basic(optional = false)
     @Column(name = "create_date")
     private LocalDateTime createDate;
 
