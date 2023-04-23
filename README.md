@@ -87,7 +87,7 @@ A java restful api using JAX-RS for a DVD rental store website(Sakila).
 * Edit store
 * delete store by id 
 
- ### Inventory
+ ### Inventories
 * Find all inventories
 * Find inventories by page
 * Find inventory by id
